@@ -1,2 +1,2 @@
-# SimpleHTTPServer
-Simple HTTP Server C Implementation
+# Simple HTTP Server
+Simple HTTP Server C Implementation.
