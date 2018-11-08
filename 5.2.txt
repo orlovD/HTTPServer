@@ -1,0 +1,18 @@
+1. When reading from one character device, each read returns one character from the device's buffer.
+2. When 2 character devices created in the system, reading from both devices one after other using head utility returns characters in the same order as reading from one device.
+The reason for such behavior is the same driver each device shares, thus two devices share same buffer (buffer is a global variable in kernel module). 
+3. Spinlock mechanism also prevents from different character devices being opened at the same time (spinlock is global too). 
+When one process finishes its reading from one character device, the other process will continue from the place where 1st process stoped even if the second process will be reading from different character device. So the order of reading are preserved between different processes. 
+
+
+***
+test.c should be run using admin rights:
+sudo ./test
+
+
+Program test.c demonstrates that two different character devices can not be opend at the same time.
+It creates two different character devices and try to open them one after another. 
+Return values of the function open() checked using assert so it can be seen that:
+-- When first is opened, the second can not be opened  - open returns -1.
+-- It is possible to open the second device only when the first devise already closed.
+
