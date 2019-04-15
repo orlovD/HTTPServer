@@ -4,6 +4,6 @@ Technologies Used:
 
 Description:
 
-* Multi-Process HTTP Server written in C. 
-* Implemented multi-process server architecture.
+* Multi-threaded simple HTTP Server written in C. 
+* Implemented multi-thread server architecture.
 * Maintained shared queue of requests using threads, mutex locking and conditional variables.
